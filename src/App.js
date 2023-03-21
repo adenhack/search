@@ -1,25 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import { ListGroup, ListGroupItem } from "reactstrap";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+  state = { data: [], arr: ["mesut", "yusuf", "berk", "enes", "hikmet"] }
+
+  renderArray() {
+    return (
+      <div>
+        <ListGroup>
+          {
+            this.state.data.map((array, index) => (
+              <ListGroupItem key={index}>
+                {array}
+              </ListGroupItem>
+            ))
+          }
+        </ListGroup>
+      </div>
+    )
+  }
+
+  fullArrayRender() {
+    return (
+      <div>
+        <ListGroup>
+          {
+            this.state.arr.map((array, index) => (
+              <ListGroupItem key={index}>
+                {array}
+              </ListGroupItem>
+            ))
+          }
+        </ListGroup>
+      </div>
+    )
+  }
+
+  render() {
+    const setOnChange = (e) => {
+      this.setState({ data: this.state.arr.filter(filtre => filtre.includes(e.target.value)) })
+    }
+
+    return (
+      <div className="App" style={{ width: "300px", textAlign: "center" }}>
+        <input type="text" onChange={setOnChange} style={{ width: "300px", height: "40px", borderRadius: "5px" }} />
+        {this.state.data.length > 0 ? this.renderArray() : this.fullArrayRender()}
+      </div>
+    );
+  }
 }
 
-export default App;
