@@ -43,7 +43,7 @@ export default class App extends Component {
 
     return (
       <div className="App" style={{ width: "300px", textAlign: "center" }}>
-        <input type="text" onChange={setOnChange} style={{ width: "300px", height: "40px", borderRadius: "5px" }} />
+        <input type="text" onChange={setOnChange} style={{ width: "300px", height: "40px", borderRadius: "5px",textAlign:"center" }} />
         {this.state.data.length > 0 ? this.renderArray() : this.fullArrayRender()}
       </div>
     );
